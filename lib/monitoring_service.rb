@@ -1,19 +1,19 @@
 require 'prometheus/client'
 
 class MonitoringService
-  def initialize(application)
+  attr_reader :client
+
+  def initialize
     @client = Prometheus::Client.registry
-    @http_requests = Prometheus::Client::Counter.new(:http_requests, docstring: 'A counter of HTTP requests made', labels: [:requests])
-    @loop_count = Prometheus::Client::Counter.new(:loop_count, docstring: 'A counter of total loop counts', labels: [:loop])
-    @client.register(@http_requests)
-    @client.register(@loop_count)
+    @app_http_requests_count = @client.counter(:app_http_requests_count, docstring: 'A counter of HTTP requests made')
+    @app_loop_count = @client.counter(:app_loop_count, docstring: 'A counter of total loop counts')
   end
 
   def increment_http_requests
-    @http_requests.increment
+    @app_http_requests_count.increment
   end
 
   def increment_loop_count
-    @loop_count.increment
+    @app_loop_count.increment
   end
 end
