@@ -29,14 +29,3 @@ class Application
     return n * factorial(n - 1)
   end
 end
-
-app = Application.new
-threads = Concurrent::Array.new
-while(true) do
-  @monitor.increment_loop_count
-  puts app.probable_high_cpu_usage
-  threads << Thread.new do
-    app.make_random_http_requests
-  end
-end
-thread.map(&:join)

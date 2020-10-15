@@ -9,8 +9,9 @@ gem 'pg', '~> 1.2.3'
 gem 'rake', '12.3.0'
 gem 'redis', '4.0.1'
 gem 'sequel'
+gem 'rack'
 gem 'typhoeus', '~> 1.3'
-gem 'prometheus-client', '~> 0.4.2'
+gem 'prometheus-client', '~> 2.1.0'
 
 group :test do
   gem 'rspec'
